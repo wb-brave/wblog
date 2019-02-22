@@ -1,0 +1,30 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+
+### 前端使用的一些框架，不上传，后续会整改应用方式 先将现基础的打包上传###
+/resources/static/bower_components/
+/resources/static/build/
+/resources/static/dist/
+/resources/static/plugins/

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="pic=${commons.random(5, '.png')},title='系统登录页面'">
+<head th:replace="base/header::headerFragment(${title})">
+</head>
+<body class="hold-transition login-page" th:style="'background:url(../../static/dist/img/bg/'+@{${pic}}+');no-repeat; background-size: cover;'">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="../../index.html"><b>W-</b>BLOG</a>
+  </div>
+  <!-- /.login-logo 3f6e74-->
+  <div class="login-box-body" style="background-color: #3f6e74">
+    <p class="login-box-msg" style="color: #eaeaea">Sign in W-Blog</p>
+
+    <form method="post" id="loginForm" onsubmit="return checkLogin()">
+      <div class="form-group has-feedback">
+        <input type="text" name="username" class="form-control" placeholder="username" style="background-color: #eaeaea">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" name="password" class="form-control" placeholder="Password" style="background-color: #eaeaea">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox icheck">
+            <label>
+              <input type="checkbox" name="remeber_me"><font color="#eaeaea">Remember Me</font>
+            </label>
+          </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+    <div class="social-auth-links text-center">
+      <p>- OR -</p>
+      <a href="#" onclick="unSupportAction('Sign in using Facebook')" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+        Facebook</a>
+      <a href="#" onclick="unSupportAction('Sign in using Google+')" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
+        Google+</a>
+    </div>
+    <!-- /.social-auth-links -->
+
+    <a href="/users/findPassword" style="color: #eaeaea">忘记密码?</a><br>
+    <a href="/users/register.html" class="text-center" style="color: #eaeaea">注册新用户</a>
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+
+<script>
+
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_flat-blue',
+      radioClass: 'iradio_flat-blue',
+      increaseArea: '20%' /* optional */
+    });
+  });
+  $("#loginForm").formValidation({
+      icon: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },
+      field:{
+          username:{
+              validating:{
+                  notEmpty:{
+                      message:'用户名不能为空'
+                  },
+                  stringLength:{
+                      /*长度提示*/
+                      min: 6,
+                      max: 12,
+                      message: '用户名长度必须在6到12之间'
+                  }
+              }
+          },
+          password:{
+              validating:{
+                  notEmpty:{
+                      message:'密码不能为空'
+                  },
+                  stringLength:{
+                      min:6,
+                      max:12,
+                      message:'密码长度必须在6到12之间'
+                  },
+                  regexp:{
+                      regexp:/^[a-zA-Z0-9_\.]$/,
+                      message:'密码由数字字母下划线和.组成'
+                  }
+              }
+
+          }
+      }
+  });
+  var wblog = new $.wblog();
+  function checkLogin() {
+      var $form = $("#loginForm");
+      var vb = $form.data('formValidation');
+      if(vb.isValid()){
+          wblog.post({
+              type:"POST",
+              url:"/users/doLogin",
+              dataType:"JSON",
+              data:$("#loginForm").serialize(),
+              success:function (result) {
+                  if(result && result.success){
+                      // $("#loginForm").attr("action",'/index');
+                      //为什么下面的方法不行 因为你使用submit按钮，会产生俩次提交，所以需要有个返回值
+                      window.location.href='/index';
+                  }else{
+                      wblog.alertError(result.msg || '登录失败');
+                  }
+              }
+          });
+          //防止出现俩次提交导致页面跳转回登录页面
+      }
+      return false;
+  }
+</script>
+</body>
+</html>

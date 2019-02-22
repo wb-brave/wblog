@@ -1,0 +1,275 @@
+.myModal{
+    background-color: #aaaaaa;
+    /*position: absolute;*/
+    /*left: 150px;*/
+    top: 180px;
+
+}
+
+input.mycheckbox{
+    /*size: ;*/
+}
+
+.mytooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.mytooltip.tooltiptext{
+    visibility: hidden;
+    width: 120px;
+    background-color: blue;
+    color: yellow;
+    text-align: center;
+    border-radius: 8px;
+    padding: 1px;
+    /*定位*/
+    position: absolute;
+    z-index: 0;
+}
+
+.mytooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.widget-article .widget-article-header {
+    padding: 20px;
+    height: 280px;
+    /*width: 320px;*/
+    /*border-top-right-radius: 3px;*/
+    /*border-top-left-radius: 3px*/
+    -webkit-transform: rotate(7deg) translate(-10px, 0);
+    -ms-transform: rotate(7deg) translate(-10px, 0);
+    transform: rotate(7deg) translate(-10px, 0);
+}
+
+.widget-article .widget-article-articlename {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 25px;
+    font-weight: 300;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2)
+}
+
+.widget-article .widget-article-desc {
+    margin-top: 0
+}
+
+.widget-article .widget-article-image {
+    position: absolute;
+    top: 82px;
+    left: 76%;
+    margin-left: 10px
+}
+
+.widget-article .widget-article-image > img {
+    position: absolute;
+    width: 20px;
+    height: auto;
+    top: 150px;
+    border: 3px solid #fff
+}
+
+.widget-article .box-footer {
+    padding-top: 20px
+}
+
+.my-box-footer {
+    border-top-left-radius: 100px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 30px;
+    border-top: 1px solid #f4f4f4;
+    padding: 10px;
+    background-color: #fff
+}
+
+.my-col-md-4{
+    position: relative;
+    min-height: 1px;
+    padding-right: 0px;
+    padding-left: 40px;
+    padding-top: 15px;
+}
+.my-col-md-10{
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+@media (min-width: 992px) {
+    .my-col-md-1, .my-col-md-10, .my-col-md-11, .my-col-md-12, .my-col-md-2, .my-col-md-3, .my-col-md-4, .my-col-md-5, .my-col-md-6, .my-col-md-7, .my-col-md-8, .my-col-md-9 {
+        float: left
+    }
+
+    .my-col-md-4 {
+        width: 32%
+    }
+
+    .my-col-md-10 {
+        width: 83.33333333%;
+    }
+}
+
+
+
+.post-list-item-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding: 0;
+    border-radius: 3px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .04)
+}
+
+.post-list-item-container:hover {
+    -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, .1);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .1)
+}
+
+.post-list-item-container .item-thumb {
+    position: relative;
+    display: inherit;
+    min-height: 250px;
+    background-position: 50% 50%;
+    background-size: cover
+}
+
+.post-list-item-container .item-thumb .item-desc {
+    font-size: 14px;
+    position: absolute;
+    top: 20%;
+    overflow: hidden;
+    height: 145px;
+    padding: 0 30px;
+    word-break: break-all;
+    opacity: 0;
+    color: #fff
+}
+
+.post-list-item-container .item-thumb:hover {
+    background-color: silver;
+    background-image: none !important;
+}
+
+.post-list-item-container .item-thumb:hover .item-desc {
+    -webkit-animation: fade-in .5s;
+    animation: fade-in;
+    animation-duration: .5s;
+    opacity: 1
+}
+
+.post-list-item-container .item-slant {
+    position: absolute;
+    z-index: 0;
+    right: 0;
+    /*控制博客封面的梯形长度 反比*/
+    bottom: 50px;
+    left: 0;
+    width: 110%;
+    min-height: 100px;
+    -webkit-transform: rotate(7deg) translate(-10px, 0);
+    -ms-transform: rotate(7deg) translate(-10px, 0);
+    transform: rotate(7deg) translate(-10px, 0);
+    background-color: #ecf0f5;
+}
+
+.post-list-item-container .item-slant.reverse-slant {
+    -webkit-transform: rotate(-10deg) translate(10px, -10px);
+    -ms-transform: rotate(-10deg) translate(10px, -10px);
+    transform: rotate(-10deg) translate(10px, -10px);
+    opacity: 0;
+    /*#f68e5f*/
+    background-color: silver;
+    -webkit-box-shadow: none;
+    box-shadow: none
+}
+
+.post-list-item-container .item-label {
+    position: relative;
+    height: 120px;
+    padding: 15px 20px 15px;
+    /*下面直角梯形的颜色*/
+    /*background-color: #848484;*/
+    background-color: #ecf0f5;
+}
+
+.post-list-item-container .item-label .item-title a {
+    font-size: 17px;
+    line-height: 17px;
+    word-break: break-all;
+    color: #313131
+}
+
+.post-list-item-container .item-label .item-meta {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 0 5px 1px;
+    text-align: right
+}
+/*用户头像*/
+.post-list-item-container .item-label .item-meta .item-mata-photo {
+    display: inline-block;
+    float: right;
+    width: 42px;
+    height: 42px;
+    /*设置下边距*/
+    margin-bottom: 82px;
+    border: 1px solid #eaeaea;
+    border-radius: 50%
+}
+/*.post-list-item-container .item-label .item-photo > img {*/
+    /*position: absolute;*/
+    /*width: 100%;*/
+    /*height: auto;*/
+    /*!*margin-left : 300px;*!*/
+    /*bottom: 0px;*/
+    /*text-align: right*/
+/*}*/
+.post-list-item-container .item-label .item-meta .item-meta-cat a {
+    font-size: 13px;
+    position: relative;
+    float: right;
+    margin-right: 10px;
+    padding: 10px 0;
+    text-align: right;
+    text-transform: none;
+    color: #5f5f5f
+}
+
+.post-list-item-container .item-label .item-meta .item-meta-date {
+    font-size: 10px;
+    position: relative;
+    padding-top: 9px;
+    padding-left: 9px;
+    text-align: right;
+    text-transform: none;
+    color: #f1f1f1
+}
+
+.post-list-item-container .item-label .item-meta .item-meta-ico {
+    display: inline-block;
+    float: right;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #eaeaea;
+    border-radius: 50%
+}
+
+.clearfix:after, .clearfix:before {
+    display: table;
+    content: ''
+}
+
+.clearfix:after {
+    clear: both
+}
+
+.clearfix {
+    zoom: 1
+}

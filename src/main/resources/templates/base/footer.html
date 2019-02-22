@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--系统主页面的的版权控制-->
+<div th:fragment="footer-content">
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+            <strong>Copyright &copy; 2018 <a href="#">wubin</a>.</strong> All rights reserved.
+        </div>
+        <i class="glyphicon glyphicon-globe"><strong>W-Blogs</strong></i>
+        <!-- Default to the left -->
+    </footer>
+</div>
+
+<div th:fragment="blogNabvIndex(articles,pages,path)">
+    <div class="dataTables_paginate paging_simple_numbers" id="blog_paginate">
+        <ul class="pagination">
+            <!--获取从后台传来的文章集合articles，判断是否有上一页来决定这个按钮是否可以点击-->
+            <li class="paginate_button previous" th:classappend="((${articles.current}?:1)==1)?'disabled':null"
+                id="blog-pre">
+                <!--算术运算符需要放在${}里面} 因为外面一层已经判断了1的情况所以不用再做判断-->
+                <!--aria-controls="example2"-->
+                <a th:href="@{${path} + ${articles.current - 1}}"
+                   data-dt-idx="0"
+                   tabindex="0">Previous</a>
+            </li>
+            <!--必须要迭代可迭代对象，获取到数据判断是否为当前页-->
+            <li class="paginate_button" th:each="page:${pages}" th:if="${pageStat.count}<=7"
+                th:classappend="(${articles.current}==${pageStat.count})?'active':null">
+                <a th:href="@{${path} + ${page}}"
+                   data-dt-idx="1" tabindex="0" th:text="${page}"></a>
+            </li>
+            <!--如果分页数不到9页则这个不显示-->
+            <li class="paginate_button" th:if="${articles.getPages()}>8">
+                <a href="javascript:void(0)"
+                data-dt-idx="1" tabindex="0">...</a>
+            </li>
+            <!--如果分页数不到8页则这个不显示-->
+            <li class="paginate_button" th:if="${articles.getPages()}>7">
+                <a th:href="@{${path}+${articles.getPages()}}"
+                   data-dt-idx="1" tabindex="0" th:text="${articles.getPages()}"></a>
+            </li>
+            <!--使用appendclass向class中追加属性-->
+            <li class="paginate_button next" id="example2_next"
+                th:classappend="((${articles.current}?:1)==${articles.getPages()})?'disabled':null"><a href="#"
+                                                                                                       aria-controls="example2"
+                                                                                                       data-dt-idx="7"
+                                                                                                       tabindex="0">Next</a>
+            </li>
+            <li class="paginate_button ">
+                <a href="#" aria-controls="example2"
+                   data-dt-idx="6" tabindex="0">
+                    <i class="fa fa-refresh"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</html>

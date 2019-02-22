@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      th:with="pic=${commons.random(5, '.png')},title='系统注册页面'">
+<head th:replace="base/header::headerFragment(${title})">
+</head>
+<body class="hold-transition register-page"
+      th:style="'background:url(../../static/dist/img/bg/'+@{${pic}}+');no-repeat;background-size:cover;'">
+<div class="register-box">
+    <div class="register-logo">
+        <a href="../../index.html"><b>W-</b>Blog</a>
+    </div>
+
+    <div class="register-box-body" style="background-color: #3f6e74">
+        <p class="login-box-msg" style="color: #eaeaea">注册新用户</p>
+
+        <form method="post" id="registerForm" onsubmit="return doRegister()">
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Full name" name="username" style="color: #eaeaea">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feefback">
+                <input type="text" class="form-control" placeholder="登录名" name="screenname"
+                       style="color: #eaeaea">
+                <span class="glyphicon glyphicon-inbox form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="email" class="form-control" placeholder="Email" name="email" style="color: #eaeaea">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feefback">
+                <input type="text" class="form-control" placeholder="主页" name="homeurl" style="color: #eaeaea">
+                <span class="glyphicon glyphicon-inbox form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feefback">
+                <input type="text" class="form-control" placeholder="用户组" name="groupname"
+                       style="color: #eaeaea">
+                <span class="glyphicon glyphicon-inbox form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" placeholder="Password" name="password"
+                       style="color: #eaeaea">
+                <span class="glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" placeholder="Retype password" name="repw"
+                       style="color: #eaeaea">
+                <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                        <label>
+                            <input type="checkbox" name="agreeTerms"> <font style="color: #eaeaea">I agree to the</font>
+                            <a style="color: yellowgreen;" onclick="showTerms()">terms
+                                <!--<div class="tooltip">terms<span class="tooltiptext">点我、点我、点我</span></div>-->
+                            </a>
+                        </label>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+
+        <div class="social-auth-links text-center">
+            <p style="color: #eaeaea">- OR -</p>
+            <a href="#" onclick="unSupportAction('Sign in using Facebook')"
+               class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up
+                using
+                Facebook</a>
+            <a href="#" onclick="unSupportAction('Sign in using Google+')"
+               class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up
+                using
+                Google+</a>
+        </div>
+
+        <a href="/users/login.html" class="text-center" style="color: #eaeaea">已有账户</a>
+    </div>
+    <!-- /.form-box -->
+</div>
+
+<div th:replace="base/body::tiaokuan('注册条款？！')">
+    <!--<div class="modal fade alert" id="myModal" tabindex="-1" role="dialog"-->
+    <!--aria-labelledby="myModalLabel" aria-hidden="true">-->
+    <!--<div class="modal-dialog" role="document">-->
+    <!--<div class="modal-content myModal">-->
+    <!--<div class="modal-header">-->
+    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">-->
+
+    <!--</button>-->
+    <!--<h4 class="modal-title text-center" id="myModalLable">-->
+    <!--<b>注册条款</b>-->
+    <!--</h4>-->
+    <!--</div>-->
+    <!--<div class="modal-body">-->
+    <!--<p class="text-center">你注册了就是我的人了，不许跑！</p>-->
+    <!--</div>-->
+    <!--<div class="modal-footer">-->
+    <!--<button type="button" class="btn btn-primary" data-dismiss="modal">-->
+    <!--关闭-->
+    <!--</button>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+</div>
+<script>
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_flat-blue',
+            radioClass: 'iradio_flat-blue',
+            increaseArea: '20%' /* optional */
+        });
+    });
+    $("#registerForm").formValidation({
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            username: {
+                validators: {
+                    notEmpty: {
+                        message: '用户名不能为空'
+                    },
+                    stringLength: {
+                        /*长度提示*/
+                        min: 4,
+                        max: 12,
+                        message: '用户名长度必须在4到30之间'
+                    }
+                }
+            },
+            screenname: {
+                validators: {
+                    notEmpty: {
+                        message: '登录邮箱名或用户名不能为空'
+                    },
+                    stringLength: {
+                        /*长度提示*/
+                        min: 4,
+                        max: 30,
+                        message: '用户名长度必须在4到30之间'
+                    },
+                    // threshold: 4,//只有4个字符以上才发送ajax请求
+                    // remote: {
+                    //     url: "${basePath}/oauth/checkUnique",
+                    //     data: function (validator) {
+                    //         return {
+                    //             loginName: $("#loginName").val(),
+                    //             userId: null
+                    //         };
+                    //     },
+                    //     message: '该登录名已被使用，请使用其他登录名',
+                    //     delay: 2000
+                    // }
+                }
+            },
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: '邮箱不能为空'
+                    },
+                    regexp: {
+                        regexp: /^[A-Z0-9a-z_\\.\-]+@[A-Z0-9a-z]+\.[A-Za-z]+$/,
+                        message: '请输入正确的邮箱'
+                    }
+                }
+            },
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: '密码不能为空'
+                    },
+                    stringLength: {
+                        /*长度提示*/
+                        min: 6,
+                        max: 30,
+                        message: '密码长度必须在6到30之间'
+                    },
+                    different: {//不能和用户名相同
+                        field: 'loginName',//需要进行比较的input name值
+                        message: '不能和用户名相同'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_\.]+$/,
+                        message: '密码由数字字母下划线和.组成'
+                    }
+                }
+            },
+            agreeTerms: {
+                message: '请同意做我的人！',
+                validators: {
+                    notEmpty: '请同意做我的人！'
+                }
+
+            },
+            repw: {
+                message: '密码无效',
+                validators: {
+                    notEmpty: {
+                        message: '密码不能为空'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: '用户名长度必须在6到30之间'
+                    },
+                    identical: {//相同
+                        field: 'password',
+                        message: '两次密码不一致'
+                    },
+                    different: {//不能和用户名相同
+                        field: 'loginName',
+                        message: '不能和用户名相同'
+                    },
+                    regexp: {//匹配规则
+                        regexp: /^[a-zA-Z0-9_\.]+$/,
+                        message: '密码由数字字母下划线和.组成'
+                    }
+                }
+            }
+        }
+    });
+    var wblog = new $.wblog();
+
+    function doRegister() {
+        var $form = $("#registerForm");
+        var bv = $form.data('formValidation');
+        var checkedSuccess = bv.isValid();
+        if (checkedSuccess) {
+            wblog.post({
+                url: "/users/doRegister",
+                data: $form.serialize(),
+                success: function (result) {
+                    if (result && result.success) {
+                        window.location.href = "/index";
+                    } else {
+                        wblog.alertError(result.msg || "注册失败");
+                    }
+                }
+            });
+        } else {
+            wblog.alertInfo("参数验证错误，将重新加载页面");
+            // $form.data('formValidation',null);
+            // doRegister();
+            window.setTimeout(function () {
+                window.location.reload();
+            },4000);
+        };
+
+        return false;
+    };
+
+    function showTerms() {
+        $("#myModal").modal();
+    }
+</script>
+</body>
+</html>

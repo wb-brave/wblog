@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html xmlns:th="http://www.thymeleaf.org" th:with="title='系统主界面',
+        defaultTheme='hold-transition skin-purple sidebar-mini',myTheme=${myTheme},
+        user=${LOGIN_USER}">
+<head th:replace="base/header::headerFragment(${title})">
+</head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+<body th:class="${myTheme!=null?myTheme:defaultTheme}">
+<div class="wrapper">
+
+    <!-- Main Header 首页的顶部导航栏部分 -->
+    <header class="main-header">
+
+        <!-- Logo -->
+        <a href="/index.html" class="logo" style="background-color: #4c4c4c">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>WB</b></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>W</b>--<b>BOLG</b></span>
+        </a>
+
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation" style="background-color: #4c4c4c">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" id="hiddenSider" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu 自定义导航栏-->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- Messages: style can be found in dropdown.less-->
+                    <li class="dropdown messages-menu">
+                        <!-- Menu toggle button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="label label-success">4</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 4 messages</li>
+                            <li>
+                                <!-- inner menu: contains the messages -->
+                                <ul class="menu">
+                                    <li><!-- start message -->
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <!-- User Image -->
+                                                <img th:src="@{/static/dist/img/user2-160x160.jpg}"
+                                                     class="img-circle" alt="User Image">
+                                            </div>
+                                            <!-- Message title and timestamp -->
+                                            <h4>
+                                                Support Team
+                                                <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                            </h4>
+                                            <!-- The message -->
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                    <!-- end message -->
+                                </ul>
+                                <!-- /.menu -->
+                            </li>
+                            <li class="footer"><a href="#">See All Messages</a></li>
+                        </ul>
+                    </li>
+                    <!-- /.messages-menu -->
+
+                    <!-- Notifications Menu -->
+                    <li class="dropdown notifications-menu">
+                        <!-- Menu toggle button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-warning">10</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 10 notifications</li>
+                            <li>
+                                <!-- Inner Menu: contains the notifications -->
+                                <ul class="menu">
+                                    <li><!-- start notification -->
+                                        <a href="#">
+                                            <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                        </a>
+                                    </li>
+                                    <!-- end notification -->
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">View all</a></li>
+                        </ul>
+                    </li>
+                    <!-- Tasks Menu -->
+                    <li class="dropdown tasks-menu">
+                        <!-- Menu Toggle Button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-flag-o"></i>
+                            <span class="label label-danger">9</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 9 tasks</li>
+                            <li>
+                                <!-- Inner menu: contains the tasks -->
+                                <ul class="menu">
+                                    <li><!-- Task item -->
+                                        <a href="#">
+                                            <!-- Task title and progress text -->
+                                            <h3>
+                                                Design some buttons
+                                                <small class="pull-right">20%</small>
+                                            </h3>
+                                            <!-- The progress bar -->
+                                            <div class="progress xs">
+                                                <!-- Change the css width attribute to simulate progress -->
+                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                     role="progressbar"
+                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">20% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="#">View all tasks</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- User Account Menu -->
+                    <li class="dropdown user user-menu">
+                        <!-- Menu Toggle Button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <!-- The user image in the navbar-->
+                            <img th:src="@{../../static/dist/img/user2-160x160.jpg}" class="user-image"
+                                 alt="User Image">
+                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                            <span class="hidden-xs">Alexander Pierce</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- The user image in the menu -->
+                            <li class="user-header">
+                                <img th:src="@{../../static/dist/img/user2-160x160.jpg}" class="img-circle"
+                                     alt="User Image">
+
+                                <p>
+                                    Alexander Pierce - Web Developer
+                                    <small>Member since Nov. 2012</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Followers</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Sales</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Friends</a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
+                    <!--data-toggle 触发里面的值-->
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar" style="background-color: #3c3c3c">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar" style="background-color: #3c3c3c">
+
+            <!-- Sidebar user panel (optional) 左边导航栏的用户部分-->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img th:src="@{../../static/dist/img/user2-160x160.jpg}" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>Alexander Pierce</p>
+                    <!-- Status -->
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu 左边主菜单下的一些选项-->
+            <ul class="sidebar-menu" data-widget="tree">
+                <!--<li class="header">HEADER</li>-->
+                <!-- Optionally, you can add icons、 to the links -->
+                <!--<li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>-->
+                <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#">Link in level 2</a></li>
+                        <li><a href="#">Link in level 2</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content 中间部分内容-->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <li>
+                <span class="glyphicon glyphicon-book"></span>
+                <span class="glyphicon-class">&nbsp&nbsp热门博客</span>
+            </li>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">最新博客</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="compose.html" class="btn btn-primary btn-block margin-bottom">撰写博客</a>
+                    <!-- /. box -->
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <li>
+                                <span class="glyphicon glyphicon-tags"></span>
+                                <span class="glyphicon-class">&nbsp&nbsp标签</span>
+                            </li>
+                            <div class="box-tools">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body no-padding">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#"><i class="fa fa-circle-o text-red"></i> 一本道</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> 北海道</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> 爱剪辑</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+                <div class="my-col-md-10">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="glyphicon glyphicon-object-align-left">Blogs</i>
+                            <!-- 搜索框 -->
+                            <div class="box-tools pull-right">
+                                <div class="col-md-4 pull-right">
+                                    <form action="/index" method="post" onsubmit="return false">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search for...">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="submit">Go!</button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- /.box-tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body padding">
+                            <div class="row">
+                                <!-- 使用自定义的column宽度 -->
+                                <div class="my-col-md-4" th:each="article : ${articles.records}">
+
+                                    <div class="post-list-item-container">
+                                        <a th:href="@{#}" class="item-thumb  bg-deepgrey"
+                                           style="background-image:url('/static/dist/img/photo1.png');">
+                                            <dir class="item-desc" th:text="${article.tags}"></dir>
+                                        </a>
+
+                                        <div class="item-slant reverse-slant &lt; bg-deepgrey"></div>
+                                        <div class="item-slant"></div>
+                                        <div class="item-label">
+                                            <div class="item-title"><a th:href="@{#}"
+                                                                       th:text="${article.title}"></a>
+                                            </div>
+                                            <div class="item-meta">
+                                                <div class="item-mata-photo"
+                                                     style="background:url('/static/dist/img/user3-128x128.jpg') ;no-repeat;background-size: 40px auto;'">
+                                                </div>
+                                            </div>
+                                            <div class="item-meta clearfix">
+                                                <div th:class="'item-meta-ico '+ ${commons.show_icon(article.cid)}"
+                                                     th:style="'background: url('+@{/user/img/bg-ico.png}+');no-repeat;background-size: 40px auto;' "></div>
+                                                <div class="item-meta-cat"
+                                                     th:utext="${commons.show_categories(article.categories)}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.blog articles-->
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <!--设置后面两个class样式居中-->
+                            <div class="mailbox-controls with-border text-center">
+                                <!--设置页面的页数控制-->
+                                <div th:replace="base/footer::blogNabvIndex(${articles},${pages},'/page/')">
+                                    <!--下面的是静态页面，系统运行时会使用thymeleaf替换过-->
+                                    <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                                        <ul class="pagination">
+                                            <li class="paginate_button previous disabled" id="example2_previous"><a
+                                                    href="#"
+                                                    aria-controls="example2"
+                                                    data-dt-idx="0"
+                                                    tabindex="0">Previous</a>
+                                            </li>
+                                            <li class="paginate_button active"><a href="#" aria-controls="example2"
+                                                                                  data-dt-idx="1" tabindex="0">1</a>
+                                            </li>
+                                            <li class="paginate_button "><a href="#" aria-controls="example2"
+                                                                            data-dt-idx="2" tabindex="0">2</a></li>
+                                            <li class="paginate_button "><a href="#" aria-controls="example2"
+                                                                            data-dt-idx="3" tabindex="0">3</a></li>
+                                            <li class="paginate_button "><a href="#" aria-controls="example2"
+                                                                            data-dt-idx="4" tabindex="0">4</a></li>
+                                            <li class="paginate_button "><a href="#" aria-controls="example2"
+                                                                            data-dt-idx="5" tabindex="0">5</a></li>
+                                            <li class="paginate_button "><a href="#" aria-controls="example2"
+                                                                            data-dt-idx="6" tabindex="0">6</a></li>
+                                            <li class="paginate_button next" id="example2_next"><a href="#"
+                                                                                                   aria-controls="example2"
+                                                                                                   data-dt-idx="7"
+                                                                                                   tabindex="0">Next</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /. box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer 中间布局的底部-->
+    <div th:replace="base/footer::footer-content">
+
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="pull-right hidden-xs">
+                Anything you want
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+        </footer>
+    </div>
+
+    <!-- Control Sidebar 右上方控制栏部分-->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- Home tab content -->
+            <div class="tab-pane active" id="control-sidebar-home-tab">
+                <h3 class="control-sidebar-heading">Recent Activity</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript:;">
+                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                                <p>Will be 23 on April 24th</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
+
+                <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript:;">
+                            <h4 class="control-sidebar-subheading">
+                                Custom Template Design
+                                <span class="pull-right-container">
+                    <span class="label label-danger pull-right">70%</span>
+                  </span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
+
+            </div>
+            <!-- /.tab-pane -->
+            <!-- Stats tab content -->
+            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+            <!-- /.tab-pane -->
+            <!-- Settings tab content -->
+            <div class="tab-pane" id="control-sidebar-settings-tab">
+                <form method="post">
+                    <h3 class="control-sidebar-heading">General Settings</h3>
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Report panel usage
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+
+                        <p>
+                            Some information about this general settings option
+                        </p>
+                    </div>
+                    <!-- /.form-group -->
+                </form>
+                <!--<form method="post" onsubmit="return changeTheme()">-->
+                <div class="margin">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-flat">切换系统主题</button>
+                        <button type="button" class="btn btn-default btn-flat dropdown-toggle"
+                                data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">展示可以跟换的主题</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#" onclick="changeTheme('skin-blue')">skin-blue</a></li>
+                            <li><a href="#" onclick="changeTheme('skin-black')">skin-black</a></li>
+                            <li><a href="#" onclick="changeTheme('skin-purple')">skin-purple</a></li>
+                            <li><a href="#" onclick="changeTheme('skin-yellow')">skin-yellow</a></li>
+                            <li><a href="#" onclick="changeTheme('skin-red')">skin-red</a></li>
+                            <li><a href="#" onclick="changeTheme('skin-green')">skin-green</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--</form>-->
+            </div>
+        </div>
+        <!-- /.tab-pane -->
+
+    </aside>
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+    immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!--不要加type-->
+<script>
+    $(function () {
+        $("#hiddenSider").click();
+    })
+    var wblog = new $.wblog();
+
+    function changeTheme(theme) {
+        alert(theme);
+        wblog.post({
+            type: 'POST',
+            dataType: 'JSON',
+            async: true,
+            //asdas
+            url: "/changeTheme",
+            data: {theme: theme},
+            success: function (result) {
+                alert(result);
+                window.location.reload(true)
+            }
+        });
+    }
+</script>
+</body>
+</html>

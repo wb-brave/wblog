@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='一些公共页面'">
+<!--<head th:replace="base/header::headerFragment(${title})">-->
+<!--</head>-->
+<!--&lt;!&ndash; jQuery 3 &ndash;&gt;-->
+<!--<script th:src="@{../../static/bower_components/jquery/dist/jquery.min.js}"></script>-->
+<!--&lt;!&ndash; Bootstrap 3.3.7 &ndash;&gt;-->
+<!--<script th:src="@{../../static/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>-->
+<!--&lt;!&ndash; AdminLTE App &ndash;&gt;-->
+<!--<script th:src="@{../../static/dist/js/adminlte.min.js}"></script>-->
+
+<div th:fragment="tiaokuan(modalTitle)">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content myModal">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    </button>
+                    <h4 class="modal-title text-center" id="myModalLable" th:text="${modalTitle}">
+                        <b>注册条款?!</b>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <b class="text-center">你注册了就是我的人了，不许跑！</b>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <p class="text-right"><s>小声BB：</s>先让你跑39米</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        关闭
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
