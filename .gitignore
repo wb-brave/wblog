@@ -24,7 +24,11 @@
 /.nb-gradle/
 
 ### 前端使用的一些框架，不上传，后续会整改应用方式 先将现基础的打包上传###
-/resources/static/bower_components/
-/resources/static/build/
-/resources/static/dist/
-/resources/static/plugins/
+src/main/resources/static/bower_components/Flot
+src/main/resources/static/bower_components/
+src/main/resources/static/build/
+src/main/resources/static/dist/
+src/main/resources/static/plugins/
+mvnw
+.mvn/wrapper
+mvnw.cmd
